@@ -22,7 +22,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
 
     # http://localhost:8000/api/admin/
-    path('api/admin/', admin.site.urls),
+    path('api/admin123/', admin.site.urls),
 ]
 
 
