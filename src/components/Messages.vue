@@ -13,12 +13,12 @@
       value="Add" 
       @click="addMessage({ subject: subject, body: msgBody })" 
       :disabled="!subject || !msgBody">
-
     <hr/>
     <h3>Messages on Database</h3>
     <p v-if="messages.length === 0">No Messages</p>
     <div class="msg" v-for="(msg, index) in messages" :key="index">
         <p class="msg-index">[{{index}}]</p>
+        <p class="msg-pk" v-html="msg.pk"></p>
         <p class="msg-subject" v-html="msg.subject"></p>
         <p class="msg-body" v-html="msg.body"></p>
         <input type="submit" @click="deleteMessage(msg.pk)" value="Delete" />
