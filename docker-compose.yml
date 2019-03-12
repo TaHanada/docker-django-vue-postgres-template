@@ -14,9 +14,9 @@ services:
   django:
     build:
       context: .
-      dockerfile: /backend/Dockerfile      
+      dockerfile: /docker/BackendDockerfile      
     container_name: docker-django-vue-backend  
-    command: ./backend_setup.sh
+    command: ./docker/backend_setup.sh
     environment:
       POSTGRES_NAME: postgres
       POSTGRES_USER: user
@@ -31,9 +31,9 @@ services:
   vue:
     build:
       context: .
-      dockerfile: /src/Dockerfile
+      dockerfile: /docker/FrontendDockerfile
     container_name: docker-django-vue-frontend
-    command: ./frontend_setup.sh
+    command: ./docker/frontend_setup.sh
     volumes:
       - .:/app
     ports:
