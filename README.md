@@ -73,8 +73,8 @@ Docker should install everything else in their containers.
 ## Setup Template
 
 ```
-$ git clone https://github.com/iprogramstuff/django-vue-template
-$ cd django-vue-template
+$ git clone https://github.com/iprogramstuff/docker-django-vue-postgres-template
+$ cd docker-django-vue-postgres-template
 ```
 
 Setup
