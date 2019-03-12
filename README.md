@@ -3,7 +3,7 @@
 ![Vue Logo](/src/assets/logo-vue.png "Vue Logo")
 ![Django Logo](/src/assets/logo-django.png "Django Logo")
 
-This template is a minimal example for an application using VueJs and Django (RestFramework). Django uses a Postgres database.
+This template is a minimal example for an application using VueJs and Django (RestFramework). Django is pre-configured in this repository to use a Postgres database.
 
 It's setup to have a clear separation: use Vue, Yarn, and Webpack to handle all frontend logic and asset bundling,
 and use Django and RestFramework to manage a Data Models, Web API, and serve static files.
