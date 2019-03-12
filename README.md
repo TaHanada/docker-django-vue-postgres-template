@@ -25,10 +25,10 @@ If this setup is not what you are looking for, you might want look at other simi
 * [ariera/django-vue-template](https://github.com/ariera/django-vue-template)
 * [vchaptsev/cookiecutter-django-vue](https://github.com/vchaptsev/cookiecutter-django-vue)
 
-Prefer Flask? Checkout my [gtalarico/flask-vuejs-template](https://github.com/gtalarico/flask-vuejs-template)
+Prefer Flask? Checkout [gtalarico/flask-vuejs-template](https://github.com/gtalarico/flask-vuejs-template)
 
 ### Demo
-
+(This is a live demo of the original repo without Docker and Postgres. Todo: fix that)
 [Live Demo](https://django-vue-template-demo.herokuapp.com/)
 
 ### Includes
@@ -66,59 +66,62 @@ Prefer Flask? Checkout my [gtalarico/flask-vuejs-template](https://github.com/gt
 ## Prerequisites
 
 Before getting started you should have the following installed and running:
+- [X] Docker & Docker Compose
 
-- [X] Yarn - [instructions](https://yarnpkg.com/en/docs/install#mac-stable)
-- [X] Vue Cli 3 - [instructions](https://cli.vuejs.org/guide/installation.html)
-- [X] Python 3
-- [X] Pipenv
+Docker should install everything else in their containers.
 
 ## Setup Template
 
 ```
-$ git clone https://github.com/gtalarico/django-vue-template
-$ cd django-vue
+$ git clone https://github.com/iprogramstuff/django-vue-template
+$ cd django-vue-template
 ```
 
 Setup
 ```
-$ yarn install
-$ pipenv install --dev & pipenv shell
-$ python manage.py migrate
+$ docker-compose up --build
 ```
 
-## Running Development Servers
+## Enter shell of backend containers
 
 ```
-$ python manage.py runserver
+$ docker exec -it container-name bash
 ```
+Default container names are: docker-django-vue-frontend, docker-django-vue-backend, docker-django-vue-db. You can see them by running `docker container ps`
 
-From another tab in the same directory:
-
-```
-$ yarn serve
-```
-
-The Vuejs application will be served from `localhost:8080` and the Django Api
-and static files will be served from `localhost:8000`.
+The Django and Vuejs application will be served at `localhost:8002`.
 
 The dual dev server setup allows you to take advantage of
 webpack's development server with hot module replacement.
 Proxy config in `vue.config.js` is used to route the requests
 back to django's Api on port 8000.
 
-If you would rather run a single dev server, you can run Django's
-development server only on `:8000`, but you have to build build the Vue app first
-and the page will not reload on changes.
 
-```
-$ yarn build
-$ python manage.py runserver
-```
+## Static Assets
 
+See `settings.dev` and `vue.config.js` for notes on static assets strategy.
+
+This template implements the approach suggested by Whitenoise Django.
+For more details see [WhiteNoise Documentation](http://whitenoise.evans.io/en/stable/django.html)
+
+It uses Django Whitenoise to serve all static files and Vue bundled files at `/static/`.
+While it might seem inefficient, the issue is immediately solved by adding a CDN
+with Cloudfront or similar.
+Use `vue.config.js` > `baseUrl` option to set point all your assets to the CDN,
+and then set your CDN's origin back to your domains `/static` url.
+
+Whitenoise will serve static files to your CDN once, but then those assets are cached
+and served directly by the CDN.
+
+This allows for an extremely simple setup without the need for a separate static server.
+
+[Cloudfront Setup Wiki](https://github.com/gtalarico/django-vue-template/wiki/Setup-CDN-on-Cloud-Front)
 
 ## Deploy
 
 * Set `ALLOWED_HOSTS` on `backend.settings.prod.py`
+
+## THE BELOW DEPLOYMENT STEPS DO NOT WORK WITH THE NEW DOCKER SETUP AND SHOULD BE IGNORED!! I will write them for this version soon.
 
 ### Heroku Server
 
@@ -144,23 +147,3 @@ The `Procfile` will run Django migrations and then launch Django'S app using gun
 ##### Heroku One Click Deploy
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/gtalarico/django-vue-template)
-
-## Static Assets
-
-See `settings.dev` and `vue.config.js` for notes on static assets strategy.
-
-This template implements the approach suggested by Whitenoise Django.
-For more details see [WhiteNoise Documentation](http://whitenoise.evans.io/en/stable/django.html)
-
-It uses Django Whitenoise to serve all static files and Vue bundled files at `/static/`.
-While it might seem inefficient, the issue is immediately solved by adding a CDN
-with Cloudfront or similar.
-Use `vue.config.js` > `baseUrl` option to set point all your assets to the CDN,
-and then set your CDN's origin back to your domains `/static` url.
-
-Whitenoise will serve static files to your CDN once, but then those assets are cached
-and served directly by the CDN.
-
-This allows for an extremely simple setup without the need for a separate static server.
-
-[Cloudfront Setup Wiki](https://github.com/gtalarico/django-vue-template/wiki/Setup-CDN-on-Cloud-Front)
