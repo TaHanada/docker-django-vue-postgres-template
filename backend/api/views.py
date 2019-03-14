@@ -3,12 +3,8 @@ from django.views.decorators.cache import never_cache
 from rest_framework import viewsets
 
 from .models import Message, MessageSerializer
-
-
-# Serve Vue Application
-index_view = never_cache(TemplateView.as_view(template_name='index.html'))
-appjs_view = never_cache(TemplateView.as_view(template_name='app.js'))
-
+from backend.bookkeeping.models import Entry
+from backend.bookkeeping.serializers import EntrySerializer
 
 class MessageViewSet(viewsets.ModelViewSet):
     """
@@ -16,3 +12,11 @@ class MessageViewSet(viewsets.ModelViewSet):
     """
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+
+
+class EntryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows entries to be viewed or edited.
+    """
+    queryset = Entry.objects.all()
+    serializer_class = EntrySerializer

@@ -13,8 +13,8 @@ export default new Router({
       component: VueDemo
     },
     {
-      path: '/messages',
-      name: 'messages',
+      path: '/entry/add',
+      name: 'add_entry',
       component: Messages
     }
   ]
