@@ -1,5 +1,6 @@
 Django
 djangorestframework
+djangorestframework-jwt==1.11.0
 django-environ==0.4.5
 gunicorn
 whitenoise==4.0

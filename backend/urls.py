@@ -19,7 +19,7 @@ urlpatterns = [
 # These paths are for the api endpoints and admin interface.
 urlpatterns += [
     # http://localhost:8000/api/<router-viewsets>
-    path('api/', include('backend.api.urls')),
+    path('api/v1.0/', include('backend.api.urls')),
 
     # http://localhost:8000/admin/
     path('admin/', admin.site.urls),
