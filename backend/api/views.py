@@ -96,7 +96,7 @@ class CreateUserView(CreateAPIView):
 
 #     #         # if new_user.user_type is not User.USER_TYPE_CHOICE[0][0]:
 #     #             # tasks.send_welcome_email_task.delay(user.email,
-#     #                                                 # "Thank you for using Strainprint app")
+#     #                                                 # "Thank you for using signing up")
 #     #         return Response({"user": user_serialized_data,
 #     #                             "token": token},
 #     #                         status=status.HTTP_201_CREATED)

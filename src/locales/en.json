@@ -1,4 +1,9 @@
 {
+  "site":{
+    "title": "site.title",
+    "terms_of_service": "terms of service",
+    "privacy_policy": "privacy policy"
+  },
   "dashboard": {
     "completedTasks": "Completed Tasks",
     "dailySales": "Daily Sales",
@@ -111,7 +116,7 @@
     ]
   },
   "sidebar": {
-    "title": "Besquared",
+    "title": "sidebar.title",
     "shortTitle": "CT",
     "dashboard": "dashboard",
     "icons": "Icons",

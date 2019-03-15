@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <router-link :to="{path:'/'}" class="navbar-brand">Site title</router-link>
+          <router-link :to="{path:'/'}" class="navbar-brand">{{$t('site.title')}}</router-link>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,8 +50,8 @@
           </ul>
         </nav>
         <div class="copyright pull-right">
-          &copy; 2018, made with
-          <i class="fa fa-heart heart"></i> by Black admin
+          &copy; 2019, made with
+          <i class="fa fa-heart heart"></i> by iProgramStuff
         </div>
       </div>
     </footer>

@@ -1,4 +1,9 @@
 {
+  "site":{
+    "title": "توقيت الإبداعية",
+    "terms_of_service": "terms of service",
+    "privacy_policy": "privacy policy"
+  },
   "dashboard": {
     "completedTasks": "المهام المكتملة",
     "dailySales": "المبيعات اليومية",

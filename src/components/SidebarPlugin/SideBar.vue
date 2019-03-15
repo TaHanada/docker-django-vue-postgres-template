@@ -46,7 +46,8 @@
     props: {
       title: {
         type: String,
-        default: "Besquared"
+        // default: $t('site.title')
+        default: 'site.title'
       },
       backgroundColor: {
         type: String,

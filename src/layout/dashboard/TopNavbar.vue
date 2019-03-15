@@ -36,7 +36,7 @@
                 <a href="#" class="nav-item dropdown-item">Settings</a>
               </li>
                <li class="nav-link">
-                <a href="/api/v1.0/auth/logout" class="nav-item dropdown-item">Logout</a>
+                <a @click="logout" class="nav-item dropdown-item">Logout</a>
               </li>
             <!-- <div class="search-bar input-group" @click="searchModalVisible = true"> -->
               <!-- <input type="text" class="form-control" placeholder="Search...">
@@ -138,7 +138,8 @@
     },
     methods: {
       capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+        if (string=="") return string
+        else return string.charAt(0).toUpperCase() + string.slice(1);
       },
       toggleNotificationDropDown() {
         this.activeNotifications = !this.activeNotifications;
@@ -148,6 +149,12 @@
       },
       toggleSidebar() {
         this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
+      },
+      logout(){
+        console.log("logout!");
+        this.$store.commit("userModule/logout");
+        location.href='/'
+        // this.$router.go(this.$router.currentRoute);
       },
       hideSidebar() {
         this.$sidebar.displaySidebar(false);
