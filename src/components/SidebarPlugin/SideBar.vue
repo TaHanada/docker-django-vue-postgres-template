@@ -19,7 +19,7 @@
           </div>
         </a>
         <a href="/" class="simple-text logo-normal">
-          {{title}}
+          {{$t('site.title')}}
         </a>
       </div>
       <slot>
@@ -44,11 +44,6 @@
 
   export default {
     props: {
-      title: {
-        type: String,
-        // default: $t('site.title')
-        default: 'site.title'
-      },
       backgroundColor: {
         type: String,
         default: "vue"

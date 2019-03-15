@@ -1,4 +1,6 @@
 import DashboardLayout from "@/layout/dashboard/DashboardLayout.vue";
+import HomeLayout from "@/layout/starter/SampleLayout.vue";
+
 // GeneralViews
 import NotFound from "@/pages/NotFoundPage.vue";
 import store from '../store'
@@ -6,6 +8,7 @@ import store from '../store'
 
 // Admin pages
 const Login = () => import(/* webpackChunkName: "login" */"@/pages/Login.vue");
+const Register = () => import(/* webpackChunkName: "register" */"@/pages/Register.vue");
 const Dashboard = () => import(/* webpackChunkName: "dashboard" */"@/pages/Dashboard.vue");
 const Profile = () => import(/* webpackChunkName: "common" */ "@/pages/Profile.vue");
 const Notifications = () => import(/* webpackChunkName: "common" */"@/pages/Notifications.vue");
@@ -18,8 +21,6 @@ const isLoggedIn = store.getters["userModule/isUserLoggedIn"];
 console.log("User logged in: ", isLoggedIn)
 console.log(isLoggedIn==true)
 let routes;
-// ROUTES
-// if the user is logged in create routes, otherwise create just the login route
 if (isLoggedIn === true) {
   routes = [
     {
@@ -64,28 +65,41 @@ if (isLoggedIn === true) {
         }
       ]
     },
+    { path: "*", component: NotFound },
   ]
 } else {
+  // Do like above, a "LoginLayout"? or "LandingLayout" and has children like Login, Register, Forgot, TOS, FAQ, etc..?
   routes = [{
     path: "/",
-    component: Login,
-    // redirect: "/login"
+    component: HomeLayout,
+    redirect: "/login",
+      children: [
+        {
+          path: "login",
+          name: "login",
+          component: Login,
+        },
+        {
+          path: "register",
+          name: "register",
+          component: Register
+        },
+        // {
+        //   path: "forgot-password",
+        //   name: "forgot-password",
+        //   component: ForgotPassword
+        // }
+        // {
+        //   path: "reset-password",
+        //   name: "reset-password",
+        //   component: ResetPassword
+        // }
+      ]
   },
   { path: "*", component: NotFound },
   ]
 }
-//   ];
-// } else {
-// console.log("setting login route...");
-// const routes = [
-//   {
-//     path: "/",
-//     component: Login,
-//     redirect: "/login"
-//   },
-//   { path: "*", component: NotFound },
-// ];
-// }
+
 /**
  * Asynchronously load view (Webpack Lazy loading compatible)
  * The specified component must be inside the Views folder

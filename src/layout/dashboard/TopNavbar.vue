@@ -29,7 +29,7 @@
       <collapse-transition>
         <div class="collapse navbar-collapse show" v-show="showMenu">
           <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
-            <li class="nav-link">
+            <!-- <li class="nav-link">
                 <a href="#" class="nav-item dropdown-item">Profile</a>
               </li>
               <li class="nav-link">
@@ -37,7 +37,7 @@
               </li>
                <li class="nav-link">
                 <a @click="logout" class="nav-item dropdown-item">Logout</a>
-              </li>
+              </li> -->
             <!-- <div class="search-bar input-group" @click="searchModalVisible = true"> -->
               <!-- <input type="text" class="form-control" placeholder="Search...">
               <div class="input-group-addon"><i class="tim-icons icon-zoom-split"></i></div> -->
@@ -79,7 +79,7 @@
                 <a href="#" class="nav-item dropdown-item">Another one</a>
               </li>
             </base-dropdown> -->
-            <!-- <base-dropdown tag="li"
+            <base-dropdown tag="li"
                            :menu-on-right="!$rtl.isRTL"
                            title-tag="a"
                            class="nav-item"
@@ -94,16 +94,16 @@
                 </p>
               </a>
               <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item">Profile</a>
+                <a href="/#/profile" class="nav-item dropdown-item">Profile</a>
               </li>
               <li class="nav-link">
                 <a href="#" class="nav-item dropdown-item">Settings</a>
               </li>
               <div class="dropdown-divider"></div>
               <li class="nav-link">
-                <a href="/api/v1.0/auth/logout" class="nav-item dropdown-item">Log out</a>
+                <a href="#" @click="logout" class="nav-item dropdown-item">Log out</a>
               </li>
-            </base-dropdown> -->
+            </base-dropdown>
           </ul>
         </div>
       </collapse-transition>
