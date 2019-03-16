@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import messages from './modules/messages'
+import userModule from './user'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-export default new Vuex.Store({
-  modules: {
-    messages
-  }
-})
+const store = new Vuex.Store({
+    modules: {
+        userModule,
+    }
+});
+
+store.commit("userModule/initialiseStore");
+
+export default store;

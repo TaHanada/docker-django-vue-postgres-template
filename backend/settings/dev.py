@@ -41,11 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',  # < Per Whitenoise, to disable built in
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
+    'rest_framework_jwt',
     'backend.api',
+    'backend.bookkeeping',
+    'backend.users',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,6 +60,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = (
+#     'http//:localhost:8002',
+# )
+
+AUTH_USER_MODEL = 'users.User'
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -137,8 +149,8 @@ MIDDLEWARE_CLASSES = (
 
 STATIC_URL = '/static/'
 # Place static in the same location as webpack build files
-STATIC_ROOT = os.path.join(BASE_DIR, 'dist', 'static')
-STATICFILES_DIRS = []
+STATIC_ROOT = os.path.join(BASE_DIR, 'dist')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'dist','static')]
 
 
 ##########
@@ -150,3 +162,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Insert Whitenoise Middleware at top but below Security Middleware
 # MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware',)
 # http://whitenoise.evans.io/en/stable/django.html#make-sure-staticfiles-is-configured-correctly
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
