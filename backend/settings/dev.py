@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_jwt',
     'backend.api',
-    'backend.bookkeeping',
     'backend.users',
 ]
 
