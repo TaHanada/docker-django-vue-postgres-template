@@ -44,13 +44,13 @@
             v-if="errors.password && errors.password[0]"
             class="text-danger"
           >{{errors.password && errors.password[0]}}</p>
-        </div>
-
         <p
           v-if="showCouldNotRegister"
-          align="center"
+          align="left"
           class="text-danger"
-        >Sorry, we could not register your account. Please try again.</p>
+        >Sorry, we could not register your account. Please try again with a different username or email.</p>
+        </div>
+
       </div>
       <br>
       <div class="row">
@@ -103,7 +103,8 @@ export default {
           this.$store.commit("userModule/setUser", registerResult.data);
           this.$notify({
             type: "success",
-            title: "Registration successful. You may now log in.",
+            title: "Success!",
+            message: "You've successfully registered and may now log in.",
             horizontalAlign: "right",
             verticalAlign: "bottom"
           });

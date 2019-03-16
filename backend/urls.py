@@ -11,8 +11,10 @@ from django.views.decorators.cache import never_cache
 # These paths are for the Vue app - remove if you are not using the vue frontend, and create your custom views.
 urlpatterns = [
     # http://localhost:8000/
-    path('', never_cache(TemplateView.as_view(template_name='index.html')), name='index'),
-    path('app.js', never_cache(TemplateView.as_view(template_name='app.js')), name='appjs'),
+    path('', never_cache(TemplateView.as_view(
+        template_name='index.html')), name='index'),
+    path('app.js', never_cache(TemplateView.as_view(
+        template_name='app.js')), name='appjs'),
 ]
 ###
 

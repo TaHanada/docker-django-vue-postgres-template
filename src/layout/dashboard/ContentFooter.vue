@@ -10,7 +10,7 @@
       </ul>
       <div class="copyright">
         © {{year}} made with <i class="tim-icons icon-heart-2"></i> by
-        <a href="https://www.iprogramstuf.com" target="_blank" rel="noopener">Chris Fuller</a> for a better view of your finances.
+        <a href="https://www.iprogramstuf.com" target="_blank" rel="noopener">Chris Fuller</a>.
       </div>
     </div>
   </footer>

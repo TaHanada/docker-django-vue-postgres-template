@@ -13,7 +13,7 @@
     <div class="container-fluid">
       <div class="copyright">
         © {{year}} made with <i class="tim-icons icon-heart-2"></i> by
-        <a href="https://www.iprogramstuff.com" target="_blank" rel="noopener">iProgramStuff</a> for a better web.
+        <a href="https://www.iprogramstuff.com" target="_blank" rel="noopener">iProgramStuff</a>.
       </div>
     </div>
   </footer>
