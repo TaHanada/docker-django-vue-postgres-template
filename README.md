@@ -1,8 +1,5 @@
 # Docker Django Vue Postgres Template ✌️ 🐍
 
-![Vue Logo](/src/assets/logo-vue.png "Vue Logo")
-![Django Logo](/src/assets/logo-django.png "Django Logo")
-
 This template is a minimal example for an application using VueJs and Django (RestFramework). Django is pre-configured in this repository to use a Postgres database.
 
 It's setup to have a clear separation: use Vue, Yarn, and Webpack to handle all frontend logic and asset bundling,
@@ -18,7 +15,10 @@ original state, except where a different configuration is needed for better inte
 
 You should change the username and password of your database in docker-compose.yml (under environment variables for both db and django).
 
-#### Alternatives
+#### Branches & Alternatives
+There are currently two branches. `master` is a template that includes a user registration and login system, and adds Creative Tim's Black Dashboard theme to the mix. It is a very good start for a project that requires a user authentication system.
+
+The `basic-no-users-no-black-dashboard` branch has no user authentication system built-in, no CORS configuration, and no black dashboard theme. It is just a very basic barebones start.
 
 If this setup is not what you are looking for, you might want look at other similar projects:
 
@@ -120,30 +120,5 @@ This allows for an extremely simple setup without the need for a separate static
 ## Deploy
 
 * Set `ALLOWED_HOSTS` on `backend.settings.prod.py`
-
-## THE BELOW DEPLOYMENT STEPS DO NOT WORK WITH THE NEW DOCKER SETUP AND SHOULD BE IGNORED!! I will write them for this version soon.
-
-### Heroku Server
-
-```
-$ heroku apps:create django-vue-template-demo
-$ heroku git:remote --app django-vue-template-demo
-$ heroku buildpacks:add --index 1 heroku/nodejs
-$ heroku buildpacks:add --index 2 heroku/python
-$ heroku addons:create heroku-postgresql:hobby-dev
-$ heroku config:set DJANGO_SETTINGS_MODULE=backend.settings.prod
-
-$ git push heroku
-```
-
-Heroku's nodejs buidlpack will handle install for all the dependencies from the `packages.json` file.
-It will then trigger the `postinstall` command which calls `yarn build`.
-This will create the bundled `dist` folder which will be served by whitenoise.
-
-The python buildpack will detect the `pipfile` and install all the python dependencies.
-
-The `Procfile` will run Django migrations and then launch Django'S app using gunicorn, as recommended by heroku.
-
-##### Heroku One Click Deploy
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/gtalarico/django-vue-template)
+* Set `DEBUG=False`, and make sure to use `collectstatic` and another web server to serve static content.
+* Set `DJANGO_SETTINGS_MODULE=backend.settings.prod` and use it to load the correct settings file.
